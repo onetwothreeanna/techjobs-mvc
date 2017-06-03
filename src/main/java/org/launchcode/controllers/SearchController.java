@@ -18,7 +18,7 @@ import java.util.HashMap;
 public class SearchController {
 
     @RequestMapping(value = "")
-    public String search(Model model) {
+    public String search(Model model){
         model.addAttribute("columns", ListController.columnChoices);
         return "search";
     }
@@ -28,10 +28,12 @@ public class SearchController {
     public String search(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
         if(searchType.equals("all")) {
             model.addAttribute("jobs", JobData.findByValue(searchTerm));
+            model.addAttribute("flood", searchTerm);
             model.addAttribute("columns", ListController.columnChoices);
             return "search";
         } else {
             model.addAttribute("jobs", JobData.findByColumnAndValue(searchType, searchTerm));
+            model.addAttribute("flood", searchTerm);
             model.addAttribute("columns", ListController.columnChoices);
             return "search";
         }
