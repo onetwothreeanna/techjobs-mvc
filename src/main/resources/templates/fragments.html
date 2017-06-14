@@ -27,7 +27,10 @@
         </div>
     </div>
 
+    <h2 th:fragment="results-counter" th:text="'(' + ${jobs.size() + ') Results'}"></h2>
+
     <div th:fragment="list-jobs" th:if="${jobs} and ${jobs.size()}">
+        <h2 th:text="'(' + ${jobs.size() + ') Results'}"></h2>
 
         <table class= "job-listing" th:each="job : ${jobs}" >
             <tr th:each="field : ${job}">
@@ -36,6 +39,10 @@
             </tr>
         </table>
 
+    </div>
+
+    <div th:fragment="list-jobs" th:unless="${jobs} and ${jobs.size()}">
+        <h2>(0) Results</h2>
     </div>
 
 </body>
